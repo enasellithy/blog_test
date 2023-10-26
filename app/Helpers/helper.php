@@ -41,7 +41,7 @@ if(!function_exists('wrong_msg')){
 
 if(!function_exists('getRole')){
     function getRole(){
-        return Auth::user()->getRoleNames();
+        return Auth::user()->getRoleNames()[0];
     }
 }
 

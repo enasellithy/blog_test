@@ -18,3 +18,13 @@ Is simple artical system
 - spatie/laravel-permission
 - livewire/livewire v 2.6
 - rappasoft/laravel-livewire-tables v 2.15
+
+
+### How Install
+- git cone https://github.com/enasellithy/blog_test.git
+- cd blog_test
+- composer install
+- cp .env.example .env
+- php artisan key:generate
+- php artisan migrate --seed
+- php artisan serv

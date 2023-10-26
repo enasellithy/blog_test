@@ -18,7 +18,7 @@ class LoginController extends Controller
     {
         if(Auth::attempt(['email' => $r->email, 'password' => $r->password])){
             done_msg();
-            return redirect(aurl(''));
+            return redirect(aurl('home'));
         }else{
             return back()->withErrors([
                 'email' => 'the provider credentials do not match',

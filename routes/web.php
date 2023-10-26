@@ -16,5 +16,6 @@ Route::group(['middleware' => 'auth'], function () use ($namespace){
 
     Route::group(['middleware' => 'checkpermission'], function () use ($namespace){
         Route::resource('users', $namespace.'UserController');
+        Route::resource('articles', $namespace.'ArticleController');
     });
 });
