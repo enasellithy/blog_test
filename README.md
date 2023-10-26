@@ -33,5 +33,6 @@ user can add comments
 
 
 ## API Link
+All Data api response have same architect design 
  - api/getArticles
  - api/getArticles/{id}
