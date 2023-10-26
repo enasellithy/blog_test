@@ -45,3 +45,23 @@ if(!function_exists('getRole')){
     }
 }
 
+if(!function_exists('jsonDone')){
+    function jsonDone($data,$message = null){
+        return response()->json([
+            'status' => true,
+            'message' => $message == null ? 'Success' : $message,
+            'data' => $data,
+        ],200);
+    }
+}
+
+if(!function_exists('jsonError')){
+    function jsonError($data){
+        return response()->json([
+            'status' => false,
+            'message' => $data,
+            'data' => null,
+        ],400);
+    }
+}
+

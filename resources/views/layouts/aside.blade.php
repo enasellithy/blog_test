@@ -51,6 +51,17 @@
             </li>
         @endcan
 
+
+                <!-- Dashboards -->
+                <li class="menu-item  {{ active_link('home') }}">
+                    <a href="{{ aurl('') }}" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                        <div data-i18n="Articles Page">
+                            Articles
+                        </div>
+                    </a>
+                </li>
+
             @can('users.index')
 
                 <li class="menu-item {{ active_link('users') }}">
@@ -58,6 +69,30 @@
                         <i class="menu-icon tf-icons ti ti-users"></i>
                         <div data-i18n="Users">
                             Users
+                        </div>
+                    </a>
+                </li>
+            @endcan
+
+            @can('roles.index')
+
+                <li class="menu-item {{ active_link('roles') }}">
+                    <a href="{{ aurl('roles') }}" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-users"></i>
+                        <div data-i18n="Roles">
+                            Roles
+                        </div>
+                    </a>
+                </li>
+            @endcan
+
+            @can('articles.index')
+
+                <li class="menu-item {{ active_link('articles') }}">
+                    <a href="{{ aurl('articles') }}" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-file"></i>
+                        <div data-i18n="Articles">
+                            Articles
                         </div>
                     </a>
                 </li>

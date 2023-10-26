@@ -10,7 +10,7 @@
             <div class="nav-align-top mb-4">
                 <div class="card-header flex-column flex-md-row mb-5">
                     <div class="head-label text-center"><h5 class="card-title mb-0"></h5></div>
-{{--                    @include('article.add-button')--}}
+                    @include('article.add-button')
                     <!-- DataTable with Buttons -->
                 </div>
                 <div class="tab-content dataTables_wrapper">

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+    <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-              crossorigin="anonymous">
-    </head>
+    <!-- Fonts -->
+    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+</head>
 <body>
 
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -89,10 +89,10 @@
                     <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ aurl('login') }}">Login</a>
                     <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ aurl('register') }}">Register</a>
                 @endguest
-                    @auth
-                        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ aurl('home') }}">Home</a>
-                        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ aurl('logout') }}">Logout</a>
-                    @endauth
+                @auth
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ aurl('home') }}">Home</a>
+                    <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{{ aurl('logout') }}">Logout</a>
+                @endauth
             </nav>
         </div>
 
@@ -117,7 +117,43 @@
                             <span>Comments ({{ \App\Models\Comment::where('article_id',$i->id)->count() }})<i class="ti ti-reply"></i></span>
                         </div>
                         <div class="card-footer">
-
+                            @auth
+                                <form class="add-new-record pt-0 row g-2"
+                                      action="{{ aurl('storeComment') }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="col-sm-12">
+                                        <label class="form-label" for="basicPost">
+                                            Title
+                                        </label>
+                                        <div class="input-group input-group-merge">
+                                            <span id="basicPost2" class="input-group-text"><i class="ti ti-pencil"></i></span>
+                                            <input
+                                                type="text"
+                                                id="basicPost"
+                                                name="comment" value="{{ old('comment') }}"
+                                                class="form-control @error('comment') is-invalid @enderror" placeholder="comment" />
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="article_id" value="{{ $i->id }}">
+                                    <button type="submit" class="btn btn-primary btn-sm data-submit me-sm-3 me-1 col-md-3 col-lg-3">Save</button>
+                                </form>
+                            @endauth
+                            <div>
+                                <h3>Comments</h3>
+                                <hr/>
+                                <br/>
+                                <ul>
+                                    @foreach($i->comments as $v)
+                                        <li class="text-start">
+                                            {{ $v->comment }}
+                                            By {{ $v->user->name }}
+                                            <br/>
+                                            At
+                                            {{ Carbon\Carbon::parse($v->created_at)->format('Y-m-d h:is') }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

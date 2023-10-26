@@ -7,7 +7,7 @@
     class="btn btn-primary"
     type="button"
     data-bs-toggle="offcanvas"
-    data-bs-target="#offcanvasEnd"
+    data-bs-target="#edit{{$row->id}}"
     aria-controls="offcanvasEnd">
     <i class="ti ti-pencil me-1"></i>
     Edit
@@ -15,7 +15,7 @@
 <div
     class="offcanvas offcanvas-end"
     tabindex="-1"
-    id="offcanvasEnd"
+    id="edit{{$row->id}}"
     aria-labelledby="offcanvasEndLabel">
     <div class="offcanvas-header border-bottom">
         <h5 class="offcanvas-title" id="exampleModalLabel">Edit</h5>
@@ -27,7 +27,7 @@
     </div>
     <div class="offcanvas-body flex-grow-1">
         <form class="add-new-record pt-0 row g-2"
-              action="{{ aurl('articles/'.$i->id) }}" method="post">
+              action="{{ aurl('articles/'.$row->id) }}" method="post">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
             <input type="hidden" name="_method" value="put">
             <div class="col-sm-12">
@@ -49,7 +49,7 @@
                 </label>
                 <div class="input-group input-group-merge" >
                     <span id="basicPost2" class="input-group-text"><i class="ti ti-pencil"></i></span >
-                    <textarea name="description" id="description"
+                    <textarea name="description" id="description{{$row->id}}"
                               class="form-control" placeholder="description">
                         {{ $row->description }}
                     </textarea>
@@ -83,45 +83,17 @@
     </div>
 </div>
 
-<button
-    class="btn btn-primary"
-    type="button"
-    data-bs-toggle="offcanvas"
-    data-bs-target="#offcanvasEnd"
-    aria-controls="offcanvasEnd">
+<a class="btn btn-danger" href="{{ aurl('articles/delete/'.$row->id) }}">
     <i class="ti ti-trash me-1"></i>
     Remove
-</button>
-<div
-    class="offcanvas offcanvas-end"
-    tabindex="-1"
-    id="offcanvasEnd"
-    aria-labelledby="offcanvasEndLabel">
-    <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title" id="exampleModalLabel">Remove</h5>
-        <button
-            type="button"
-            class="btn-close text-reset"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body flex-grow-1">
-        <form class="add-new-record pt-0 row g-2"
-              action="{{ aurl('articles.destroy'.$row->id) }}" method="delete">
-            <input type="hidden" name="_token" value="{{csrf_token()}}">
-            <div class="col-sm-12">
-                <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Save</button>
-                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-            </div>
-        </form>
-    </div>
-</div>
+</a>
 
 @push('js')
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
     <script>
+        // let itemId = $
         ClassicEditor
-            .create( document.querySelector( '#description' ), {
+            .create( document.querySelector( '#description'+'{{$row->id}}' ), {
                 language: {
                     // The UI will be English.
                     ui: 'en',

@@ -42,10 +42,17 @@ class ArticleController extends Controller
         return back();
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        $this->article->delete($id);
+        $data = Article::find($id);
+        $data->delete();
         done_msg();
+        return back();
+    }
+
+    public function storeComment(Request $r)
+    {
+        $this->article->saveComment($r->all());
         return back();
     }
 }

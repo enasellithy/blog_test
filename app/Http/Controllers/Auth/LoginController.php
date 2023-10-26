@@ -29,7 +29,6 @@ class LoginController extends Controller
     public function logout()
     {
         Auth::logout();
-        $this->done();
-        return redirect()->intended('/dashboard/login');
+        return redirect()->intended('/login');
     }
 }

@@ -9,7 +9,8 @@
 
 ## About App
 
-Is simple artical system 
+Is simple artical system  have roles & permission in dashboard curd to articles
+user can add comments 
 
 - laravel 9
 - php 8.1
@@ -18,6 +19,7 @@ Is simple artical system
 - spatie/laravel-permission
 - livewire/livewire v 2.6
 - rappasoft/laravel-livewire-tables v 2.15
+- laravelcollective/html v 4.6
 
 
 ### How Install
@@ -28,3 +30,8 @@ Is simple artical system
 - php artisan key:generate
 - php artisan migrate --seed
 - php artisan serv
+
+
+## API Link
+ - api/getArticles
+ - api/getArticles/{id}
