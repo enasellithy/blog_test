@@ -16,6 +16,7 @@ Route::group(['middleware' => 'auth'], function () use ($namespace){
     Route::get('home', $namespace.'HomeController@home')->name('home');
     Route::get('logout', $namespace.'Auth\LoginController@logout');
     Route::post('storeComment', $namespace.'ArticleController@storeComment');
+    Route::get('articles/{id}', $namespace.'ArticleController@show');
 
     Route::group(['middleware' => 'checkpermission'], function () use ($namespace){
         Route::resource('users', $namespace.'UserController');
