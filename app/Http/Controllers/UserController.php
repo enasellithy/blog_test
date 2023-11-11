@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\AddUserRequest;
 use App\Solid\Repositories\UserRepository;
+use App\Solid\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     private $user;
 
-    public function __construct(UserRepository $userRepository)
+    protected $userSerive;
+
+    public function __construct(UserService $userSerive)
     {
-        $this->user = $userRepository;
+        $this->userSerive = $userSerive;
     }
 
     public function index()
@@ -22,7 +25,8 @@ class UserController extends Controller
 
     public function store(AddUserRequest $r)
     {
-        $this->user->create($r->all());
+//        $this->user->create($r->all());
+        $this->userSerive->create($r->all());
         done_msg();
         return back();
     }
